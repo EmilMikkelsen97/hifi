@@ -1,0 +1,54 @@
+﻿ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+h2, h3, h4 {
+    color: #fdbc17;
+    text-transform:uppercase;
+}
+
+input {
+    line-height: 24px;
+}
+
+/* footer */
+#footer-container {
+    background-color: #222222;
+    color: white;
+    padding: 50px 0;
+}
+
+.footer-ul > li > b {
+    color: #fdbc17;
+}
+
+.footer-ul a {
+    color: white;
+}
+
+.imgSponsor {
+    margin:10px;
+}
+
+.devider {
+   margin-top:10px;
+}
+
+@media only screen and (max-width: 500px) {
+    .countDown {
+        font-size: 24px;
+    }
+}
+
+#check, #checkliste {
+    float:left;
+}
