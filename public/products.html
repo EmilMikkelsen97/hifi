@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Hi-Fi Klubben</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <!-- Bootstrap core CSS -->
     <link href="./vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -24,6 +24,22 @@
 
     <!-- FavIcon -->
     <link rel="icon" type="image/png" href="./img/favicon.png">
+
+    <style>
+        .container {
+            overflow: hidden;
+        }
+
+        .filterDiv {
+            display: none;
+            /* Hidden by default */
+        }
+        /* The "show" class is added to the filtered elements */
+
+        .show {
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
@@ -31,122 +47,53 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav" id="menu-links">
-
+                <li class="sidebar-brand">
+                    <a href="#">Hi-Fi Klubben</a>
+                </li>
+                <li>
+                    <a href="index.html">Forside</a>
+                </li>
+                <li>
+                    <a href="products.html">Produkter</a>
+                </li>
+                <li>
+                    <a href="contact.html">Kontakt</a>
+                </li>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
         <!-- Page Content -->
-        <div id="checkliste" class="col-lg-2" style="margin-top:150px;">
+        <div id="checkliste" class="col-lg-2 col-md-3 mb-2" style="margin-top:150px;">
             <div class="card h-100">
-                <div class="card-body">
+                <div class="card-body" style="text-transform:uppercase;">
                     <h2 id="test" class="card-title">
                         Produkter
                     </h2>
-                    <input type="checkbox" name="cdafspillere" id="check" onkeyup="myFunction()">
-                    <p>cdafspillere</p>
-                    <input type="checkbox" name="dvdafspillere" id="check" onkeyup="myFunction()">
-                    <p>dvdafspillere</p>
-                    <input type="checkbox" name="effektforstaerkere" id="check" onkeyup="myFunction()">
-                    <p>effektforstærkere</p>
-                    <input type="checkbox" name="forstaerkere" id="check" onkeyup="myFunction()">
-                    <p>forstærkere</p>
-                    <input type="checkbox" name="hojtalere" id="check" onkeyup="myFunction()">
-                    <p>højtalere</p>
-                    <input type="checkbox" name="intforstaerkere" id="check" onkeyup="myFunction()">
-                    <p>intforstærkere</p>
-                    <input type="checkbox" name="pladespillere" id="check" onkeyup="myFunction()">
-                    <p>pladespillere</p>
-                    <input type="checkbox" name="roerforstaerkere" id="check" onkeyup="myFunction()">
-                    <p>rørforstærkere</p>
+                    <input type="radio" onclick="filterSelection('all')" name="category" checked> Vis alle <br>
+                    <input type="radio" onclick="filterSelection('cdafspillere')" name="category"> Cdafspillere <br>
+                    <input type="radio" onclick="filterSelection('dvdafspillere')" name="category"> Dvdafspillere <br>
+                    <input type="radio" onclick="filterSelection('effektforstaerkere')" name="category"> Effektforstærkere
+                    <br>
+                    <input type="radio" onclick="filterSelection('foorstaerkere')" name="category"> Forstærkere <br>
+                    <input type="radio" onclick="filterSelection('hojtalere')" name="category"> Højtalere <br>
+                    <input type="radio" onclick="filterSelection('intforstaerkere')" name="category"> Intforstærkere <br>
+                    <input type="radio" onclick="filterSelection('pladespillere')" name="category"> Pladespillere <br>
+                    <input type="radio" onclick="filterSelection('roerforstaerkere')" name="category"> Rørforstærkere
                 </div>
             </div>
         </div>
+
         <div class="container">
             <div class="tagline-upper text-center text-heading text-shadow text-white mt-5 d-none d-lg-block">Hi-Fi Klubben</div>
             <div class="tagline-lower text-center text-expanded text-shadow text-uppercase text-white mb-5 d-none d-lg-block"><a href="http://www.facebook.com/hifiklubbendk" target="_blank" style="color: white;">Facebook side</a> | online@hifiklubben.dk
                 | +45 70 80 90 00</div>
             <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
-            <input type="text" class="col-lg-offset-8" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." style="width:19%;">
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
             <div class="row">
                 <ul class="col-md-12" id="myUL">
                     <div id="content"></div>
-                    <li>
-                        <div class="col-lg-4 col-md-6 mb-4">
-                            <div class="card h-100">
-                                <a href="./morty.html"><img class="card-img-top" src="./img/pladespillere/Pro_ject_Debut_3_bl.jpg" alt="Billede af meeseeks"></a>
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <a href="./morty.html">Morty Funko pop</a>
-                                    </h4>
-                                    <h5>149,-</h5>
-                                    <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae exercitationem ipsa
-                                        autem suscipit ex.</p>
-                                </div>
-                                <div class="card-footer">
-                                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="col-lg-4 col-md-6 mb-4">
-                            <div class="card h-100">
-                                <a href="#"><img class="card-img-top" src="./img/pladespillere/Pro_ject_Debut_3_yellow.jpg" alt="Billede af morty"></a>
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <a href="#">Birdperson Funko pop</a>
-                                    </h4>
-                                    <h5>149,-</h5>
-                                    <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae exercitationem ipsa
-                                        autem suscipit ex.</p>
-                                </div>
-                                <div class="card-footer">
-                                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="col-lg-4 col-md-6 mb-4">
-                            <div class="card h-100">
-                                <a href="#"><img class="card-img-top" src="./img/pladespillere/Pro_ject_rpm5.jpg" alt="Billede af rick and morty"></a>
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <a href="#">Mr. Meeseeks Funko pop</a>
-                                    </h4>
-                                    <h5>149,-</h5>
-                                    <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae exercitationem ipsa
-                                        autem suscipit ex.</p>
-                                </div>
-                                <div class="card-footer">
-                                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="col-lg-4 col-md-6 mb-4">
-                            <div class="card h-100">
-                                <a href="#"><img class="card-img-top" src="./img/pladespillere/Pro_ject_rpm10.jpg" alt="Billede af rick"></a>
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <a href="#">Mr. Poopy Butthole</a>
-                                    </h4>
-                                    <h5>149,-</h5>
-                                    <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae exercitationem ipsa
-                                        autem suscipit ex.</p>
-                                </div>
-                                <div class="card-footer">
-                                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
                 </ul>
             </div>
-        </div>
-        <div id="content">
-
         </div>
         <!-- footer -->
         <div id="footer-container" class="container-fluid">
@@ -154,18 +101,16 @@
                 <footer>
                     <div class="row">
                         <div class="col-md-3 col-sm-3 col-xs-12">
-                            <div class="col-md-9">
-                                <ul class="footer-ul">
-                                    <li><b>Hi-Fi Klubben</b></li>
-                                    <li style="margin-top: -10px;">___________________</li>
-                                    <li class="devider"><em>"- BAD SOUND KILLS GOOD MUSIC"</em></li>
-                                </ul>
-                            </div>
+                            <ul class="footer-ul">
+                                <li><b>Hi-Fi Klubben</b></li>
+                                <li style="margin-top: -10px;">__________________________________</li>
+                                <li class="devider"><em>"- BAD SOUND KILLS GOOD MUSIC"</em></li>
+                            </ul>
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-12">
                             <ul class="footer-ul">
                                 <li><b>Contact us</b></li>
-                                <li style="margin-top: -10px;">_____________________________</li>
+                                <li style="margin-top: -10px;">_____________________________________________</li>
                                 <li class="devider"><i class="fa fa-phone col-md-1"></i><span class="col-md-10">Tlf:  +45 70 80 90 00</span></li>
                                 <li><i class="fa fa-envelope-o col-md-1"></i><span class="col-md-10">Email: <a href="mailto:online@hifiklubben.dk?Subject=support">online@hifiklubben.dk</a></span></li>
                                 <li><i class="fa fa-map-marker col-md-1"></i><span class="col-md-10">Address: Find din nærmeste butik</span></li>
@@ -223,7 +168,7 @@
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
-    </script>¨
+    </script>
     <!-- searchbar -->
     <script>
         function myFunction() {
@@ -247,7 +192,7 @@
     </script>
     <!-- database udprint -->
     <script>
-        fetch('http://localhost:1337/products')
+        fetch('http://localhost:1337/products/cdafspillere')
             .then((response) => {
                 // grib svarets indhold (body) og send det som et json objekt til næste .then()
                 return response.json();
@@ -256,27 +201,284 @@
                 // nu er json objektet lagt ind i data variablen, udskriv data
                 console.log(data);
                 // document.getElementById('content').innerHTML = data[0].billede + data[0].navn + ", " + data[0].pris + "kr.";
-                document.getElementById('content').innerHTML += `
-                <li>
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card h-100">
-                            <a href="./rick.html"><img class="card-img-top" src="${data[0].billede}" alt="Billede af ${data[0].navn}"></a>
-                            <div class="card-body">
-                                <h4 class="card-title">
-                                    <a href="./rick.html">${data[0].navn}</a>
-                                </h4>
-                                <h5>${data[0].pris},-</h5>
-                                <p class="card-text">${data[0].beskrivelse}</p>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                data.forEach(function (data) {
+                    document.getElementById('content').innerHTML += `
+                    <li>
+                        <div class="col-lg-3 col-md-6 mb-4 filterDiv cdafspillere">
+                            <div class="card h-100">
+                                <a href="./rick.html"><img class="card-img-top" src="${data.billede}" alt="Billede af ${data.navn}"></a>
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <a href="./rick.html">${data.navn}</a>
+                                    </h4>
+                                    <h5>${data.pris},-</h5>
+                                    <p class="card-text">${data.beskrivelse}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </li>`;
+                    </li>`;
+                });
+            })
+        // --------------------------------------------------------------------------------------------
+        fetch('http://localhost:1337/products/dvdafspillere')
+            .then((response) => {
+                // grib svarets indhold (body) og send det som et json objekt til næste .then()
+                return response.json();
+            })
+            .then((data) => {
+                // nu er json objektet lagt ind i data variablen, udskriv data
+                console.log(data);
+                // document.getElementById('content').innerHTML = data[0].billede + data[0].navn + ", " + data[0].pris + "kr.";
+                data.forEach(function (data) {
+                    document.getElementById('content').innerHTML += `
+                    <li>
+                        <div class="col-lg-3 col-md-6 mb-4 filterDiv dvdafspillere">
+                            <div class="card h-100">
+                                <a href="./rick.html"><img class="card-img-top" src="${data.billede}" alt="Billede af ${data.navn}"></a>
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <a href="./rick.html">${data.navn}</a>
+                                    </h4>
+                                    <h5>${data.pris},-</h5>
+                                    <p class="card-text">${data.beskrivelse}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                                </div>
+                            </div>
+                        </div>
+                    </li>`;
+                });
+            })
+        // --------------------------------------------------------------------------------------------
+        fetch('http://localhost:1337/products/effektforstaerkere')
+            .then((response) => {
+                // grib svarets indhold (body) og send det som et json objekt til næste .then()
+                return response.json();
+            })
+            .then((data) => {
+                // nu er json objektet lagt ind i data variablen, udskriv data
+                console.log(data);
+                // document.getElementById('content').innerHTML = data[0].billede + data[0].navn + ", " + data[0].pris + "kr.";
+                data.forEach(function (data) {
+                    document.getElementById('content').innerHTML += `
+                    <li>
+                        <div class="col-lg-3 col-md-6 mb-4 filterDiv effektforstaerkere">
+                            <div class="card h-100">
+                                <a href="./rick.html"><img class="card-img-top" src="${data.billede}" alt="Billede af ${data.navn}"></a>
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <a href="./rick.html">${data.navn}</a>
+                                    </h4>
+                                    <h5>${data.pris},-</h5>
+                                    <p class="card-text">${data.beskrivelse}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                                </div>
+                            </div>
+                        </div>
+                    </li>`;
+                });
+            })
+        // --------------------------------------------------------------------------------------------
+        fetch('http://localhost:1337/products/foorstaerkere')
+            .then((response) => {
+                // grib svarets indhold (body) og send det som et json objekt til næste .then()
+                return response.json();
+            })
+            .then((data) => {
+                // nu er json objektet lagt ind i data variablen, udskriv data
+                console.log(data);
+                // document.getElementById('content').innerHTML = data[0].billede + data[0].navn + ", " + data[0].pris + "kr.";
+                data.forEach(function (data) {
+                    document.getElementById('content').innerHTML += `
+                    <li>
+                        <div class="col-lg-3 col-md-6 mb-4 filterDiv foorstaerkere">
+                            <div class="card h-100">
+                                <a href="./rick.html"><img class="card-img-top" src="${data.billede}" alt="Billede af ${data.navn}"></a>
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <a href="./rick.html">${data.navn}</a>
+                                    </h4>
+                                    <h5>${data.pris},-</h5>
+                                    <p class="card-text">${data.beskrivelse}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                                </div>
+                            </div>
+                        </div>
+                    </li>`;
+                });
+            })
+        // --------------------------------------------------------------------------------------------
+        fetch('http://localhost:1337/products/hojtalere')
+            .then((response) => {
+                // grib svarets indhold (body) og send det som et json objekt til næste .then()
+                return response.json();
+            })
+            .then((data) => {
+                // nu er json objektet lagt ind i data variablen, udskriv data
+                console.log(data);
+                // document.getElementById('content').innerHTML = data[0].billede + data[0].navn + ", " + data[0].pris + "kr.";
+                data.forEach(function (data) {
+                    document.getElementById('content').innerHTML += `
+                    <li>
+                        <div class="col-lg-3 col-md-6 mb-4 filterDiv hojtalere">
+                            <div class="card h-100">
+                                <a href="./rick.html"><img class="card-img-top" src="${data.billede}" alt="Billede af ${data.navn}"></a>
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <a href="./rick.html">${data.navn}</a>
+                                    </h4>
+                                    <h5>${data.pris},-</h5>
+                                    <p class="card-text">${data.beskrivelse}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                                </div>
+                            </div>
+                        </div>
+                    </li>`;
+                });
+            })
+        // --------------------------------------------------------------------------------------------
+        fetch('http://localhost:1337/products/intforstaerkere')
+            .then((response) => {
+                // grib svarets indhold (body) og send det som et json objekt til næste .then()
+                return response.json();
+            })
+            .then((data) => {
+                // nu er json objektet lagt ind i data variablen, udskriv data
+                console.log(data);
+                // document.getElementById('content').innerHTML = data[0].billede + data[0].navn + ", " + data[0].pris + "kr.";
+                data.forEach(function (data) {
+                    document.getElementById('content').innerHTML += `
+                    <li>
+                        <div class="col-lg-3 col-md-6 mb-4 filterDiv intforstaerkere">
+                            <div class="card h-100">
+                                <a href="./rick.html"><img class="card-img-top" src="${data.billede}" alt="Billede af ${data.navn}"></a>
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <a href="./rick.html">${data.navn}</a>
+                                    </h4>
+                                    <h5>${data.pris},-</h5>
+                                    <p class="card-text">${data.beskrivelse}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                                </div>
+                            </div>
+                        </div>
+                    </li>`;
+                });
+            })
+        // --------------------------------------------------------------------------------------------
+        fetch('http://localhost:1337/products/pladespillere')
+            .then((response) => {
+                // grib svarets indhold (body) og send det som et json objekt til næste .then()
+                return response.json();
+            })
+            .then((data) => {
+                // nu er json objektet lagt ind i data variablen, udskriv data
+                console.log(data);
+                // document.getElementById('content').innerHTML = data[0].billede + data[0].navn + ", " + data[0].pris + "kr.";
+                data.forEach(function (data) {
+                    document.getElementById('content').innerHTML += `
+                    <li>
+                        <div class="col-lg-3 col-md-6 mb-4 filterDiv pladespillere">
+                            <div class="card h-100">
+                                <a href="./rick.html"><img class="card-img-top" src="${data.billede}" alt="Billede af ${data.navn}"></a>
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <a href="./rick.html">${data.navn}</a>
+                                    </h4>
+                                    <h5>${data.pris},-</h5>
+                                    <p class="card-text">${data.beskrivelse}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                                </div>
+                            </div>
+                        </div>
+                    </li>`;
+                });
+            })
+        // --------------------------------------------------------------------------------------------
+        fetch('http://localhost:1337/products/roerforstaerkere')
+            .then((response) => {
+                // grib svarets indhold (body) og send det som et json objekt til næste .then()
+                return response.json();
+            })
+            .then((data) => {
+                // nu er json objektet lagt ind i data variablen, udskriv data
+                console.log(data);
+                // document.getElementById('content').innerHTML = data[0].billede + data[0].navn + ", " + data[0].pris + "kr.";
+                data.forEach(function (data) {
+                    document.getElementById('content').innerHTML += `
+                    <li>
+                        <div class="col-lg-3 col-md-6 mb-4 filterDiv roerforstaerkere">
+                            <div class="card h-100">
+                                <a href="./rick.html"><img class="card-img-top" src="${data.billede}" alt="Billede af ${data.navn}"></a>
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <a href="./rick.html">${data.navn}</a>
+                                    </h4>
+                                    <h5>${data.pris},-</h5>
+                                    <p class="card-text">${data.beskrivelse}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                                </div>
+                            </div>
+                        </div>
+                    </li>`;
+                });
             })
     </script>
     <script src='./scripts/produkt.js'></script>
+    <script>
+        filterSelection("all")
+        function filterSelection(c) {
+            var x, i;
+            x = document.getElementsByClassName("filterDiv");
+            if (c == "all") c = "";
+            // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected
+            for (i = 0; i < x.length; i++) {
+                w3RemoveClass(x[i], "show");
+                if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+            }
+        }
+
+        // Show filtered elements
+        function w3AddClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                if (arr1.indexOf(arr2[i]) == -1) {
+                    element.className += " " + arr2[i];
+                }
+            }
+        }
+
+        // Hide elements that are not selected
+        function w3RemoveClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                while (arr1.indexOf(arr2[i]) > -1) {
+                    arr1.splice(arr1.indexOf(arr2[i]), 1);
+                }
+            }
+            element.className = arr1.join(" ");
+        }
+    </script>
 </body>
 
 </html>

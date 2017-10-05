@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
-    <title>Document</title>
+    <title>Hi-Fi Klubben</title>
     <!-- Bootstrap core CSS -->
     <link href="./vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -31,7 +31,18 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav" id="menu-links">
-
+                <li class="sidebar-brand">
+                    <a href="#">Hi-Fi Klubben</a>
+                </li>
+                <li>
+                    <a href="index.html">Forside</a>
+                </li>
+                <li>
+                    <a href="products.html">Produkter</a>
+                </li>
+                <li>
+                    <a href="contact.html">Kontakt</a>
+                </li>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -84,57 +95,10 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="./img/hojtalere/harbeth_p3es2.jpg" alt="Billede af rick"></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">NYT!</a>
-                            </h4>
-                            <h5>149,-</h5>
-                            <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae exercitationem ipsa autem
-                                suscipit ex.
-                            </p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="./img/hojtalere/harbeth_hl7es2.jpg" alt="Billede af rick"></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">NYT!</a>
-                            </h4>
-                            <h5>149,-</h5>
-                            <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae exercitationem ipsa autem
-                                suscipit ex.
-                            </p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="./img/hojtalere/harbeth_monitor30.jpg" alt="Billede af rick"></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">NYT!</a>
-                            </h4>
-                            <h5>149,-</h5>
-                            <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae exercitationem ipsa autem
-                                suscipit ex.
-                            </p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                        </div>
-                    </div>
-                </div>
+                <ul class="col-md-12">
+                        <div class="tagline-lower text-center text-expanded text-shadow text-uppercase text-white mb-4" style="font-size:18px;">Seneste produkter</div>
+                    <div id="content"></div>
+                </ul>
             </div>
         </div>
         <!-- footer -->
@@ -143,18 +107,16 @@
                 <footer>
                     <div class="row">
                         <div class="col-md-3 col-sm-3 col-xs-12">
-
                             <ul class="footer-ul">
                                 <li><b>Hi-Fi Klubben</b></li>
-                                <li style="margin-top: -10px;">___________________</li>
+                                <li style="margin-top: -10px;">__________________________________</li>
                                 <li class="devider"><em>"- BAD SOUND KILLS GOOD MUSIC"</em></li>
                             </ul>
-
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-12">
                             <ul class="footer-ul">
                                 <li><b>Contact us</b></li>
-                                <li style="margin-top: -10px;">_____________________________</li>
+                                <li style="margin-top: -10px;">_____________________________________________</li>
                                 <li class="devider"><i class="fa fa-phone col-md-1"></i><span class="col-md-10">Tlf:  +45 70 80 90 00</span></li>
                                 <li><i class="fa fa-envelope-o col-md-1"></i><span class="col-md-10">Email: <a href="mailto:online@hifiklubben.dk?Subject=support">online@hifiklubben.dk</a></span></li>
                                 <li><i class="fa fa-map-marker col-md-1"></i><span class="col-md-10">Address: Find din nærmeste butik</span></li>
@@ -211,6 +173,36 @@
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
+    </script>
+    <script>
+        fetch('http://localhost:1337/products/seneste')
+            .then((response) => {
+                // grib svarets indhold (body) og send det som et json objekt til næste .then()
+                return response.json();
+            })
+            .then((data) => {
+                // nu er json objektet lagt ind i data variablen, udskriv data
+                console.log(data);
+                // document.getElementById('content').innerHTML = data[0].billede + data[0].navn + ", " + data[0].pris + "kr.";
+                data.forEach(function (data) {
+                    document.getElementById('content').innerHTML += `
+                    <div class="col-lg-3 col-md-7 mb-4">
+                        <div class="card h-100">
+                            <a href="./rick.html"><img class="card-img-top" src="${data.billede}" alt="Billede af ${data.navn}"></a>
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <a href="./rick.html">${data.navn}</a>
+                                </h4>
+                                <h5>${data.pris},-</h5>
+                                <p class="card-text">${data.beskrivelse}</p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                            </div>
+                        </div>
+                    </div>`;
+                });
+            })
     </script>
 </body>
 

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
-    <title>Document</title>
+    <title>Hi-Fi Klubben</title>
     <!-- Bootstrap core CSS -->
     <link href="./vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -33,6 +33,18 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav" id="menu-links">
+                <li class="sidebar-brand">
+                    <a href="#">Hi-Fi Klubben</a>
+                </li>
+                <li>
+                    <a href="index.html">Forside</a>
+                </li>
+                <li>
+                    <a href="products.html">Produkter</a>
+                </li>
+                <li>
+                    <a href="contact.html">Kontakt</a>
+                </li>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -75,11 +87,11 @@
                 <form method="post" action="./index.html" onsubmit="return formular(this)">
                     <div class="row">
                         <div class="form-group col-lg-4">
-                            <label class="text-heading">Navn</label>
+                            <label class="text-heading">Navn<span style="color:red; font-size:14px;">*</span></label>
                             <input type="text" name="heleNavn" class="form-control">
                         </div>
                         <div class="form-group col-lg-4">
-                            <label class="text-heading">Email Address</label>
+                            <label class="text-heading">Email Address<span style="color:red; font-size:14px;">*</span></label>
                             <input type="email" name="email" class="form-control">
                         </div>
                         <div class="form-group col-lg-4">
@@ -88,7 +100,7 @@
                         </div>
                         <div class="clearfix"></div>
                         <div class="form-group col-lg-12">
-                            <label class="text-heading">Besked</label>
+                            <label class="text-heading">Besked<span style="color:red; font-size:14px;">*</span></label>
                             <textarea class="form-control" name="besked" rows="6"></textarea>
                         </div>
                         <div class="form-group col-lg-12">
@@ -105,18 +117,16 @@
                 <footer>
                     <div class="row">
                         <div class="col-md-3 col-sm-3 col-xs-12">
-                            <div class="col-md-9">
-                                <ul class="footer-ul">
-                                    <li><b>Hi-Fi Klubben</b></li>
-                                    <li style="margin-top: -10px;">___________________</li>
-                                    <li class="devider"><em>"- BAD SOUND KILLS GOOD MUSIC"</em></li>
-                                </ul>
-                            </div>
+                            <ul class="footer-ul">
+                                <li><b>Hi-Fi Klubben</b></li>
+                                <li style="margin-top: -10px;">__________________________________</li>
+                                <li class="devider"><em>"- BAD SOUND KILLS GOOD MUSIC"</em></li>
+                            </ul>
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-12">
                             <ul class="footer-ul">
                                 <li><b>Contact us</b></li>
-                                <li style="margin-top: -10px;">_____________________________</li>
+                                <li style="margin-top: -10px;">_____________________________________________</li>
                                 <li class="devider"><i class="fa fa-phone col-md-1"></i><span class="col-md-10">Tlf:  +45 70 80 90 00</span></li>
                                 <li><i class="fa fa-envelope-o col-md-1"></i><span class="col-md-10">Email: <a href="mailto:online@hifiklubben.dk?Subject=support">online@hifiklubben.dk</a></span></li>
                                 <li><i class="fa fa-map-marker col-md-1"></i><span class="col-md-10">Address: Find din nærmeste butik</span></li>
