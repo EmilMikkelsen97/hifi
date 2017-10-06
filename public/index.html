@@ -25,7 +25,21 @@
     <!-- FavIcon -->
     <link rel="icon" type="image/png" href="./img/favicon.png">
 </head>
-
+<!--                                          __ __
+                                             |     |
+                                             |__ __|
+   __ __ __ __ _   __ __ __        __ __ __   __ __   __ __
+  |             | |        \      /        | |     | |     |
+  |     __ __ __| |         \    /         | |     | |     |
+  |    |          |          \__/          | |     | |     |
+  |    |__ __ _   |                        | |     | |     |
+  |            |  |     |\          /|     | |     | |     |
+  |     __ __ _|  |     | \        / |     | |     | |     |
+  |    |          |     |  \_ __ _/  |     | |     | |     |
+  |    |__ __ __  |     |            |     | |     | |     |__ __ __
+  |             | |     |            |     | |     | |               \
+  |__ __ __ __ _| |__ __|            |__ __| |__ __| |__ __ __ __ __ _\
+-->
 <body>
     <div id="wrapper">
         <!-- Sidebar -->
@@ -102,7 +116,7 @@
             </div>
         </div>
         <!-- footer -->
-        <div id="footer-container" class="container-fluid">
+        <div id="footer-container" class="container-fluid hidden-xxs">
             <div class="container">
                 <footer>
                     <div class="row">
@@ -188,10 +202,10 @@
                     document.getElementById('content').innerHTML += `
                     <div class="col-lg-3 col-md-7 mb-4">
                         <div class="card h-100">
-                            <a href="./rick.html"><img class="card-img-top" src="${data.billede}" alt="Billede af ${data.navn}"></a>
+                            <a href="#"><img class="card-img-top" src="${data.billede}" alt="Billede af ${data.navn}"></a>
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <a href="./rick.html">${data.navn}</a>
+                                    <a href="#">${data.navn}</a>
                                 </h4>
                                 <h5>${data.pris},-</h5>
                                 <p class="card-text">${data.beskrivelse}</p>
