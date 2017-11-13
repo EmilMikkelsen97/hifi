@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <title>Document</title>
+    <!-- Bootstrap core CSS -->
+    <link href="./vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    body {
+        margin: 0 0 0 20px;
+        font: 14px verdana, arial, sans-serif;
+    }
+
+    label {
+        width: 145px;
+        display: inline-block;
+    }
+
+    button,
+    a.button {
+        margin: 2px;
+        padding: 2px 5px;
+        border: solid 1px #444444;
+        background: #dddddd;
+        color: #333333;
+        font: 12px verdana, arial, sans-serif;
+        text-decoration: none;
+    }
+
+    em {
+        font-weight: bold;
+    }
+</style>
+
+<body>
+    <h1>Adminpanel!</h1>
+    <hr>
+    <h2>Tilføj et produkt</h2>
+    <form action="">
+        <label>id</label>
+        <input type="text">
+        <br>
+        <label>navn</label>
+        <input type="text">
+        <br>
+        <label>pris</label>
+        <input type="text">
+        <br>
+        <label>beskrivelse</label>
+        <input type="text">
+        <br>
+        <label>billede</label>
+        <input type="text">
+        <br>
+        <label>varenr</label>
+        <input type="text">
+        <br>
+        <label>fk_type</label>
+        <input type="text">
+        <br>
+        <a href="#" class="button">Gem</a>
+        <a href="index.html" class="button">Annuller</a>
+    </form>
+    <hr>
+    <h2>Produkter</h2>
+    <em style="margin-left:60px;">ID</em>
+    <em style="margin-left:28px;">NAVN</em>
+    <em style="margin-left:130px;">PRIS</em>
+    <em style="margin-left:35px;">VARENR</em>
+    <em style="margin-left:30px">FK_TYPE</em>
+    <br><br>
+
+    <div id="content"></div>
+    <div id="productForm"></div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/popper/popper.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="js/panel.js"></script>
+
+    <script>
+        fetch('http://localhost:1337/products')
+            .then((response) => {
+                // grib svarets indhold (body) og send det som et json objekt til næste .then()
+                return response.json();
+            })
+            .then((data) => {
+                // nu er json objektet lagt ind i data variablen, udskriv data
+                console.log(data);
+                // document.getElementById('content').innerHTML = data[0].billede + data[0].navn + ", " + data[0].pris + "kr.";
+                data.forEach(function (data) {
+                    document.getElementById('content').innerHTML += `
+                    <div class="row">
+                        <a href="#" class="button delete">ret</a>
+                        <a href="#" class="button delete">slet</a>
+                        <p style="margin-left:5px; font-weight:bold; width:50px;">${data.id}</p>
+                        <p style="width:180px;">${data.navn}</p>
+                        <p style="width:80px;">${data.pris}</p>
+                        <p style="width:100px">${data.varenr}</p>
+                        <p>${data.fk_type}</p>
+                    </div>`;
+                });
+            })
+    </script>
+</body>
+
+</html>

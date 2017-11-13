@@ -52,3 +52,10 @@ input {
 #check, #checkliste {
     float:left;
 }
+
+#menu-toggle {
+    color:#fdbc17;
+    background-color: #222222;
+    font-weight: bold;
+    border: none;
+}

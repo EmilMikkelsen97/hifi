@@ -9,7 +9,7 @@ const db = mysql.createConnection({
 // alle produkter
 module.exports = (app) => {
 	app.get('/products', (req, res) => {
-		const query = ('SELECT * FROM produkt')
+		const query = ('SELECT * FROM produkt ORDER BY fk_type ASC')
 
 		db.query(query, (err, rows) => {
 			if (err) {

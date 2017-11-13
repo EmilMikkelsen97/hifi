@@ -113,3 +113,6 @@ document.getElementById('content').innerHTML += `
     </div>`;
 });
 ```
+
+# kravspecifiktation
+adminpanel, tilføje, redigere og fjerne et produkt
