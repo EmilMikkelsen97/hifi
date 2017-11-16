@@ -27,7 +27,7 @@ function getParameterByName(name, url) {
        fetch(request)
           .then(response => {
              if (response.status == 204) {
-                window.location.replace(`index.html`);
+                window.location.replace(`admin.html`);
              } else {
                 throw new Error('Produkt blev ikke slettet');
              }
@@ -57,16 +57,37 @@ function getParameterByName(name, url) {
  
              document.querySelector('#productForm').innerHTML = `
                 <h2>Rediger produkt</h2>
-                <label>Produkt navn</label>
-                <input type="text" name="productName" id="productName" value="${json[0].product_name}">
+                <label>id</label>
+                <input type="text" name="productId" id="productId" value="${json[0].id}">
                 <br>
-                <label>Produkt beskrivelse</label>
-                <input type="text" name="productDescription" id="productDescription" value="${json[0].product_description}">
+                <label>navn</label>
+                <input type="text" name="productName" id="productName" value="${json[0].navn}">
                 <br>
-                <label>Produkt pris</label>
-                <input type="text" name="productPrice" id="productPrice" value="${price}">
+                <label>pris</label>
+                <input type="text" name="productPrice" id="productPrice" value="${json[0].pris}">
                 <br>
-    
+                <label>beskrivelse</label>
+                <input type="text" name="productDescription" id="productDescription" value="${json[0].beskrivelse}">
+                <br>
+                <label>billede</label>
+                <input type="text" name="productImage" id="productImage" value="${json[0].billede}">
+                <br>
+                <label>varenr</label>
+                <input type="text" name="productNumber" id="productNumber" value="${json[0].varenr}">
+                <br>
+                <label>fk_type</label>
+                <select id="productType" name="productType" value="">
+                  <option value="">Vælg type</option>
+                  <option value="1">cdafspillere</option>
+                  <option value="2">dvdafspillere</option>
+                  <option value="3">effektforstærkere</option>
+                  <option value="4">forstærkere</option>
+                  <option value="5">højtalere</option>
+                  <option value="6">intforstærkere</option>
+                  <option value="7">pladespillere</option>
+                  <option value="8">rørforstærkere</option>
+                </select>>
+                <br>    
                 <button>Gem</button>
                 <a href="index.html" class="button">Annuller</a> <span id="productsFormError" class="error"></span>
                 <hr>`;
@@ -82,7 +103,7 @@ function getParameterByName(name, url) {
                 // erstat komma med punkt, så isNaN funktionen fungerer hensigtsmæssigt
                 price = price.replace(',', '.');
  
-                if (id != 0 && name != '' && description != '' && !isNaN(price) && id > 0) {
+                if (id != 0 && name != '' && description != '' && !isNaN(price) && id > 0 && image != '' && !isNaN(number) && !isNaN(type)) {
                    document.querySelector('#productsFormError').innerHTML = "";
                    let url = `http://localhost:1337/products/${id}`;
                    let headers = new Headers();
@@ -92,10 +113,13 @@ function getParameterByName(name, url) {
                       method: 'put',
                       headers: headers,
                       body: JSON.stringify({
-                         id: id,
-                         name: name,
-                         description: description,
-                         price: price
+                        id: id,
+                        name: name,
+                        price: price,
+                        description: description,
+                        image: image,
+                        number: number,
+                        type: type
                       }),
                       cache: 'no-cache',
                       cors: 'cors'
@@ -126,17 +150,38 @@ function getParameterByName(name, url) {
     } else {
        // vis tom formular til oprettelse af et produkt
        document.querySelector('#productForm').innerHTML = `
-          <h2>Opret nyt produkt</h2>
-          <label>Produkt navn</label>
+          <h2>Tilføj nyt produkt</h2>
+          <label>id</label>
+          <input type="text" name="productId" id="productId" value="">
+          <br>
+          <label>navn</label>
           <input type="text" name="productName" id="productName" value="">
           <br>
-          <label>Produkt beskrivelse</label>
-          <input type="text" name="productDescription" id="productDescription" value="">
-          <br>
-          <label>Produkt pris</label>
+          <label>pris</label>
           <input type="text" name="productPrice" id="productPrice" value="">
           <br>
-          
+          <label>beskrivelse</label>
+          <input type="text" name="productDescription" id="productDescription" value="">
+          <br>
+          <label>billede</label>
+          <input type="text" name="productImage" id="productImage" value="">
+          <br>
+          <label>varenr</label>
+          <input type="text" name="productNumber" id="productNumber" value="">
+          <br>
+          <label>fk_type</label>
+          <select id="productType" name="productType" value="">
+            <option value="">Vælg type</option>
+            <option value="1">cdafspillere</option>
+            <option value="2">dvdafspillere</option>
+            <option value="3">effektforstærkere</option>
+            <option value="4">forstærkere</option>
+            <option value="5">højtalere</option>
+            <option value="6">intforstærkere</option>
+            <option value="7">pladespillere</option>
+            <option value="8">rørforstærkere</option>
+          </select>
+          <br>
           <button>Gem</button>
           <a href="index.html" class="button">Annuller</a> <span id="productsFormError" class="error"></span>
           <hr>`;
@@ -145,14 +190,18 @@ function getParameterByName(name, url) {
        // bind gem funktionen til knappen
        let productFormButton = document.querySelector("#productForm button");
        productFormButton.addEventListener('click', function (event) {
+          let id = document.querySelector('#productId').value;
           let name = document.querySelector('#productName').value;
-          let description = document.querySelector('#productDescription').value;
           let price = document.querySelector('#productPrice').value;
+          let description = document.querySelector('#productDescription').value;
+          let image = document.querySelector('#productImage').value;
+          let number = document.querySelector('#productNumber').value;
+          let type = document.querySelector('#productType').value;
  
           // erstat komma med punkt, så isNaN funktionen fungerer hensigtsmæssigt
           price = price.replace(',', '.');
  
-          if (name != '' && description != '' && !isNaN(price)) {
+          if (id != '' && name != '' && price != '' && description != '' && image != '' && number != '' && type != '') {
              document.querySelector('#productsFormError').innerHTML = "";
              let url = `http://localhost:1337/products/`;
              let headers = new Headers();
@@ -162,9 +211,13 @@ function getParameterByName(name, url) {
                 method: 'post',
                 headers: headers,
                 body: JSON.stringify({
-                   name: name,
-                   description: description,
-                   price: price
+                  id: id,
+                  name: name,
+                  price: price,
+                  description: description,
+                  image: image,
+                  number: number,
+                  type: type
                 }),
                 cache: 'no-cache'
              };
@@ -174,7 +227,7 @@ function getParameterByName(name, url) {
                 .then(response => {
                    // hvis gem handlingen gik fejlfrit igennem, reloades siden
                    if (response.status == 200) {
-                      window.location.replace(`index.html`);
+                      window.location.replace(`admin.html`);
                    } else {
                       throw new Error('Produkt blev ikke oprettet');
                    }
@@ -185,53 +238,35 @@ function getParameterByName(name, url) {
           } else {
              document.querySelector('#productsFormError').innerHTML = "Udfyld venligst alle felter korrekt";
           }
- 
        });
     }
- 
-    // hent alle produkter og udskriv listen
+    
+// Liste med alle produkter hvor jeg kan trykke ret eller slet
     fetch('http://localhost:1337/products')
-       .then((response) => {
-          if (response.ok) {
-             return response.json();
-          }
-       })
-       .then((json) => {
-          let list = `
-             <table>
-                <tr>
-                   <th></th>
-                   <th>id</th>
-                   <th>navn</th>
-                   <th>pris</th>
-                </tr>`;
- 
-          for (let i = 0; i < json.length; i++) {
-             let price = json[i].product_price;
-             price = price.replace('.', ',');
-             list += `
-                <tr>
-                   <td>
-                      <a href="?action=edit&id=${json[i].product_id}" class="button edit">ret</a>
-                      <a href="#" class="button delete" data-id="${json[i].product_id}">slet</a>
-                   </td>
-                   <td>${json[i].product_id}</td>
-                   <td>${json[i].product_name}</td>
-                   <td style="text-align:right">${price}</td>  
-                </tr>`;
-          }
- 
-          list += `</table><hr>`;
- 
-          document.querySelector('#productsList').innerHTML = list;
- 
-          // lokaliser alle slet knapper, og tilføj en slet funktion
-          let deleteButtons = document.querySelectorAll('#productsList a.delete');
-          deleteButtons.forEach((button) => {
-             button.addEventListener('click', sletItem);
-          })
-       })
-       .catch((err) => {
-          console.log(err);
-       })
+    .then((response) => {
+        // grib svarets indhold (body) og send det som et json objekt til næste .then()
+        return response.json();
+    })
+    .then((data) => {
+        // nu er json objektet lagt ind i data variablen, udskriv data
+        console.log(data);
+        // document.getElementById('content').innerHTML = data[0].billede + data[0].navn + ", " + data[0].pris + "kr.";
+        data.forEach(function (data) {
+            document.getElementById('productsList').innerHTML += `
+            <div class="row">
+                <a href="?action=edit&id=${data.id}" class="button delete">ret</a>
+                <a href="#" class="button delete" data-id="${data.id}">slet</a>
+                <p style="width:180px;">${data.navn}</p>
+                <p style="width:80px;">${data.pris}</p>
+                <p style="width:100px">${data.varenr}</p>
+                <p>${data.fk_type}</p>
+            </div>`;
+        });
+        // lokaliser alle slet knapper, og tilføj en slet funktion
+        let deleteButtons = document.querySelectorAll('#productsList a.delete');
+        deleteButtons.forEach((button) => {
+            button.addEventListener('click', sletItem);
+        })
+    })
+      //    price = price.replace('.', ',');
  });
