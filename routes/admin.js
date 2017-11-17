@@ -40,12 +40,15 @@ module.exports = (app) => {
       let name = (req.body.name == undefined ? '' : req.body.name);
       let description = (req.body.description == undefined ? '' : req.body.description);
       let price = (req.body.price == undefined ? 0 : req.body.price);
+      let number = (isNaN(req.params.number) ? 0 : req.params.number);
+      let image = (req.body.image == undefined ? '' : req.body.image);
+      let type = (isNaN(req.params.type) ? 0 : req.params.type);
       price = price.replace(',', '.');
 
-      if (name != '' && description != '' && !isNaN(price)) {
+      if (id != 0 && name != '' && description != '' && !isNaN(price) && id > 0 && !isNaN(number) && !isNaN(type) && image != '') {
 
          let db = mysql.connect();
-         db.execute(`INSERT INTO produkt SET navn = ?, beskrivelse = ?, pris = ?`, [name, description, price], (err, rows) => {
+         db.execute(`INSERT INTO produkt SET navn = ?, beskrivelse = ?, pris = ?, varenr = ?, billede = ?, fk_type = ?`, [name, description, price, id, number, image, type], (err, rows) => {
             if (err) {
                console.log(err);
             } else {
@@ -66,12 +69,15 @@ module.exports = (app) => {
       let description = (req.body.description == undefined ? '' : req.body.description);
       let price = (req.body.price == undefined ? 0 : req.body.price);
       let id = (isNaN(req.params.id) ? 0 : req.params.id);
+      let number = (isNaN(req.params.number) ? 0 : req.params.number);
+      let image = (req.body.image == undefined ? '' : req.body.image);
+      let type = (isNaN(req.params.type) ? 0 : req.params.type);
       price = price.replace(',', '.');
 
-      if (name != '' && description != '' && !isNaN(price) && id > 0) {
+      if (id != 0 && name != '' && description != '' && !isNaN(price) && id > 0 && !isNaN(number) && !isNaN(type) && image != '') {
 
          let db = mysql.connect();
-         db.execute(`UPDATE produkt SET navn = ?, beskrivelse = ?, pris = ? WHERE id = ?`, [name, description, price, id], (err, rows) => {
+         db.execute(`UPDATE produkt SET navn = ?, beskrivelse = ?, pris = ?, varenr = ?, billede = ?, fk_type = ? WHERE id = ?`, [name, description, price, id, number, image, type], (err, rows) => {
             if (err) {
                console.log(err);
             } else {
@@ -104,10 +110,6 @@ module.exports = (app) => {
          });
       }
    });
-
-
-
-
 
    // ========================== static
    app.get('/.*', restify.plugins.serveStatic({

@@ -115,4 +115,5 @@ document.getElementById('content').innerHTML += `
 ```
 
 # kravspecifiktation
-adminpanel, tilføje, redigere og fjerne et produkt
+adminpanel, tilføje, redigere og fjerne et produkt <br>
+Lav et login system

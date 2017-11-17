@@ -43,7 +43,7 @@ function getParameterByName(name, url) {
     if (getParameterByName('action') == "edit") {
        let productId = (getParameterByName('id') != null ? getParameterByName('id') : 0);
  
-       fetch(`http://localhost:1337/products/${id}`)
+       fetch(`http://localhost:1337/products/${productId}`)
           .then((response) => {
              if (response.ok) {
                 return response.json();
@@ -53,7 +53,7 @@ function getParameterByName(name, url) {
  
              // erstat punktum med komma
              let price = json[0].pris;
-             price = price.replace('.', ',');
+            //  var pris = price.replace('.', ',');
  
              document.querySelector('#productForm').innerHTML = `
                 <h2>Rediger produkt</h2>
@@ -98,6 +98,9 @@ function getParameterByName(name, url) {
                 let name = document.querySelector('#productName').value;
                 let description = document.querySelector('#productDescription').value;
                 let price = document.querySelector('#productPrice').value;
+                let image = document.querySelector('#productImage').value;
+                let number = document.querySelector('#productNumber').value;
+                let type = document.querySelector('#productType').value;
                 let id = (getParameterByName('id') != null ? getParameterByName('id') : 0);
  
                 // erstat komma med punkt, så isNaN funktionen fungerer hensigtsmæssigt
@@ -130,7 +133,7 @@ function getParameterByName(name, url) {
                       .then(response => {
  
                          if (response.status == 200) {
-                            window.location.replace(`index.html`);
+                            window.location.reload();
                          } else {
                             throw new Error('Produkt blev ikke opdateret')
                          }
