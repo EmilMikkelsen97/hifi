@@ -4,4 +4,4 @@ module.exports = (app) => {
     // require('./login')(app);
     require('./admin')(app);
     //require('./kontakt')(app);
-};
+}; 

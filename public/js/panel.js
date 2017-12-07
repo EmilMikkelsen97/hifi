@@ -86,7 +86,7 @@ function getParameterByName(name, url) {
                   <option value="6">intforstærkere</option>
                   <option value="7">pladespillere</option>
                   <option value="8">rørforstærkere</option>
-                </select>>
+                </select>
                 <br>    
                 <button>Gem</button>
                 <a href="index.html" class="button">Annuller</a> <span id="productsFormError" class="error"></span>
