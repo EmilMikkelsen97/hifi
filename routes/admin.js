@@ -116,5 +116,4 @@ module.exports = (app) => {
       'directory': 'public',
       'default': 'index.html'
    }));
-
 }

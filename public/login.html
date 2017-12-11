@@ -26,13 +26,16 @@
 </head>
 <body>
     <main>
-        <form id="loginform" method="post" action="/login">
+        <!-- Da jeg bruger modulet 'multiparty' til at tage imod de afsendte form-data
+             er det vigtigt at formens enctype er "multipart/form-data", ellers virker
+             det ikke. -->
+        <form id="loginform" method="post" action="/login" enctype="multipart/form-data">
                 <h4>Login påkrævet</h4>
                 
                 
                 <!--msg-->
-                <input class="inputElements" type="text" name="username" placeholder="Username" autofocus value="admin">
-                <input class="inputElements" type="password" name="password" placeholder="Password" value="admin">
+                <input class="inputElements" type="text" name="username" placeholder="Brugernavn" autofocus value="admin">
+                <input class="inputElements" type="password" name="password" placeholder="Kodeord" value="admin">
                 <button class="inputElements" type="submit">Login</button>
         </form>
     </main>
